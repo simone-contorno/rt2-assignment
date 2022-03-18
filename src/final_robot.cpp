@@ -96,7 +96,9 @@ void drivingAssistance(const sensor_msgs::LaserScan::ConstPtr& msg) {
     if (time_flag == 1) {
         t_end = std::chrono::high_resolution_clock::now();
         auto time = std::chrono::duration_cast<std::chrono::microseconds>(t_end - t_start).count();
-        if (time > MAX_TIME) {
+        if (MAX_TIME*10 > time > MAX_TIME) {
+            printf("TIME: %ld", time);
+            printf("TIME: %d", MAX_TIME);
             actionlib_msgs::GoalID canc_goal;
             printf("\nThe goal point can't be reached!\n");
             canc_goal.id = id;
