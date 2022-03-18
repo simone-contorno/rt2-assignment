@@ -54,10 +54,18 @@ void drivingAssistance(const sensor_msgs::LaserScan::ConstPtr& msg) {
     int time_flag = 0; // Compute the time elapsed since the request of the current goal
     int print_flag = 0; // Just to manage printing
     int key_flag = 3; 
+
+    // Take value in the parameters server
     if (ros::param::has("/key_flag")) {
         ros::param::get("/key_flag", key_flag);
     }
-    
+    if (ros::param::has("/drive_flag")) {
+        ros::param::get("/drive_flag", drive_flag);
+    }
+    if (ros::param::has("/time_flag")) {
+        ros::param::get("/time_flag", time_flag);
+    }
+
     // Take the minimum values
     for (i = 0; i < 360; i++) { // On the right
         if (msg->ranges[i] < right)
@@ -73,9 +81,6 @@ void drivingAssistance(const sensor_msgs::LaserScan::ConstPtr& msg) {
     }
 
     // Driving assistance
-    if (ros::param::has("/drive_flag")) {
-        ros::param::get("/drive_flag", drive_flag);
-    }
     if (drive_flag == 1 & ((mid < DIST && key_flag == 0) || (left < DIST && key_flag == 1) || (right < DIST && key_flag == 2))) {
         if (ros::param::has("/print_flag")) {
             ros::param::get("/print_flag", print_flag);
@@ -90,13 +95,11 @@ void drivingAssistance(const sensor_msgs::LaserScan::ConstPtr& msg) {
     }
 
     // Check for the max time available to reach a goal point
-    if (ros::param::has("/time_flag")) {
-        ros::param::get("/time_flag", time_flag);
-    }
     if (time_flag == 1) {
         t_end = std::chrono::high_resolution_clock::now();
         auto time = std::chrono::duration_cast<std::chrono::microseconds>(t_end - t_start).count();
-        if (MAX_TIME*10 > time > MAX_TIME) {
+        //printf("TIME: %ld\n", time);
+        if (time > MAX_TIME) {
             actionlib_msgs::GoalID canc_goal;
             printf("\nThe goal point can't be reached!\n");
             canc_goal.id = id;
@@ -138,11 +141,12 @@ void currentStatus(const move_base_msgs::MoveBaseActionFeedback::ConstPtr& msg) 
         diff_y = y_goal - current_y;
 
     // The robot is on the goal position
-    if (diff_x <= POS_ERROR && diff_y <= POS_ERROR)
+    if (diff_x <= POS_ERROR && diff_y <= POS_ERROR) 
         ros::param::set("/time_flag", 0);
 
     // Update the goal ID if there is a new goal
     if (id != msg->status.goal_id.id) {
+        printf("\nNew goal registered.\n");
         ros::param::set("/time_flag", 1);
         id = msg->status.goal_id.id;
         t_start = std::chrono::high_resolution_clock::now();
@@ -171,6 +175,8 @@ int main(int argc, char **argv) {
     ros::init(argc, argv, "final_robot");
     ros::NodeHandle nh;
     
+    t_start = std::chrono::high_resolution_clock::now();
+
     // Define the publishers
     pub_goal = nh.advertise<move_base_msgs::MoveBaseActionGoal>("move_base/goal", 1000);
     pub_canc = nh.advertise<actionlib_msgs::GoalID>("move_base/cancel", 1000);

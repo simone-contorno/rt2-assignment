@@ -125,7 +125,8 @@ def interface():
     # Manage printing
     counter1 = 10 
     flag = 0 
-    goal_flag = 0 # Check if there is a goal
+    goal_flag = 0;
+    rospy.set_param('/goal_flag', goal_flag) # Check if there is a goal
     
     while (res != '0'):
         # Print command list
@@ -149,6 +150,8 @@ def interface():
         
         counter1 += 1
         
+        goal_flag = rospy.get_param("/goal_flag")
+        
         # Exit
         if res == '0':
             rospy.set_param('/time_flag', 0)
@@ -169,12 +172,13 @@ def interface():
             
             # Publish
             client.send_goal(goal_pos)
-            goal_flag = 1
+            rospy.set_param('/goal_flag', 1)
             print("Goal sent.\n")
-            
+        
         # Cancel current goal
         elif res == '2':
             if goal_flag == 1:
+                rospy.set_param('/time_flag', 0)
                 client.cancel_goal()
                 goal_flag = 0
                 print("Goal cancelled.\n")
@@ -184,6 +188,7 @@ def interface():
         # Manual driving
         elif res == '3':
             if goal_flag == 1:
+                rospy.set_param('/time_flag', 0)
                 client.cancel_goal()
             (flag, counter1) = manualDriving(flag)
         
