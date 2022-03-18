@@ -210,7 +210,7 @@ def main():
         "goal reaching or manual driving, with or without "
         "the driving assistance!")
     
-    rospy.init_node("jupyter_final_robot")    
+    rospy.init_node("interface")    
     interface()
     print("\nBye.\n")
 
