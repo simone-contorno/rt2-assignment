@@ -125,6 +125,7 @@ def interface():
     # Manage printing
     counter1 = 10 
     flag = 0 
+    goal_flag = 0 # Check if there is a goal
     
     while (res != '0'):
         # Print command list
@@ -168,16 +169,22 @@ def interface():
             
             # Publish
             client.send_goal(goal_pos)
+            goal_flag = 1
             print("Goal sent.\n")
             
         # Cancel current goal
         elif res == '2':
-            client.cancel_goal()
-            print("Goal cancelled.\n")
+            if goal_flag == 1:
+                client.cancel_goal()
+                goal_flag = 0
+                print("Goal cancelled.\n")
+            else: 
+                print("There is no goal set.\n")
             
         # Manual driving
         elif res == '3':
-            client.cancel_goal()
+            if goal_flag == 1:
+                client.cancel_goal()
             (flag, counter1) = manualDriving(flag)
         
         # Enable/Disable driving assistance
@@ -192,9 +199,15 @@ def interface():
                 print("\nDriving assistance disabled.\n")
             
 def main():
-    print("User Interface")
+    print("\nWelcome to the User Interface!\n"
+        "Here you can choose between two different "
+        "modalities to control your robot: automatic "
+        "goal reaching or manual driving, with or without "
+        "the driving assistance!")
+    
     rospy.init_node("jupyter_final_robot")    
     interface()
+    print("\nBye.\n")
 
 if __name__ == '__main__':
     main()
