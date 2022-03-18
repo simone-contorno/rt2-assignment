@@ -1,0 +1,5 @@
+<launch>
+    <include file="$(find final_assignment)/launch/simulation_gmapping.launch" />
+    <include file="$(find final_assignment)/launch/move_base_xterm.launch" />
+    <node pkg="final_assignment" type="final_robot" name="final_robot" output="screen" required="true" launch-prefix="xterm -e" />
+</launch>
