@@ -160,15 +160,19 @@ def interface():
         # Publish new goal
         elif res == '1':
             print("\nInsert coordinates to reach:");
-            x = float(input("X: "));
-            y = float(input("Y: "));
+            x = input("X: ");
+            y = input("Y: ");
             
+            if type(x) != 'float' or type(y) != 'float':
+                print("Coordinates not valid, please instert only numbers.")
+                continue
+
             # Set goal
             goal_pos = MoveBaseGoal()
             goal_pos.target_pose.header.frame_id = "map"
             goal_pos.target_pose.pose.orientation.w = 1
-            goal_pos.target_pose.pose.position.x = x
-            goal_pos.target_pose.pose.position.y = y
+            goal_pos.target_pose.pose.position.x = float(x)
+            goal_pos.target_pose.pose.position.y = float(y)
             
             # Publish
             client.send_goal(goal_pos)
