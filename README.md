@@ -58,73 +58,6 @@ The program use the launch file "simulation_gmapping.launch" to run the simulate
             <li>sub_laser: subscribes to the topic /scan through the function drivingAssistance that continuosly take data by the laser scanner and, if the driving assistance is enabled, help the user to drive the robot stopping it if there is a wall too close in the current direction.</li>
         </ul>
         <br>
-        You can change 3 constant values to modify some aspect of the program:
-        <ul>
-            <li>DIST: minimum distance from the wall with the driving assistance enabled.</li>
-            <li>POS_ERROR: position range error.</li>
-            <li>MAX_TIME: maximum time to reach a goal (microseconds).</li>
-        </ul>
-        In the code these appear like:
-        ``` cpp
-        #define DIST 0.35 
-        #define POS_ERROR 0.5 
-        #define MAX_TIME 120000000 
-        ```
-        <br>
-        A short description of the program behavior is this one:
-        <pre><code>
-        FUNCTION drivingAssistance WITH (msg)
-            COMPUTE minimum distance on the right
-            COMPUTE minimum distance in the middle
-            COMPUTE minimum distance on the left
-            <br> 
-            IF driving assistance is enabled AND
-                the robot is going against a wall THEN
-                SET robot velocity TO 0
-                PUBLISH robot velocity
-            ENDIF
-            <br>
-            IF a goal position is set THEN
-                COMPUTE the time elapsed
-                IF the time elapsed IS GREATER THAN 120 seconds THEN
-                    DELETE current goal
-                ENDIF
-            ENDIF
-        ENDFUNCTION
-        <br>
-        FUNCTION currentStatus WITH (msg) 
-            SET current robot position
-            COMPUTE the difference between the current robot position
-            and the current goal position
-            IF the difference IS LESS THAN 0.5 THEN
-                STOP to compute the elapsed time
-            ENDIF
-        ENDFUNCTION
-        <br>
-        FUNCTION currentGoal WITH (msg)
-            SET current goal position
-        ENDFUNCTION
-        <br>
-        FUNCTION main WITH (argc, argv)
-            INITIALIZE the node "final_robot"
-            <br>
-            SET the second publisher TO "move_base/cancel"
-            SET the third publisher TO "cmd_vel"
-            <br>
-            SET the first subscriber TO "/move_base/feedback" WITH currentStatus
-            SET the second subscriber TO "/move_base/goal" WITH currentGoal
-            SET the third subscriber TO "/scan" WITH drivingAssistance
-            <br>
-            INITIALIZE spinner WITH 3 threads
-            START spinner
-            WAIT for the user 
-            STOP spinner
-            CALL ros::shutdown
-            CALL ros::waitForShutdown
-            <br>
-            RETURN 0
-        ENDFUNCTION
-        </code></pre>
     </li>
     <li>interface.py : uses 'move_base' as an Action Server to publish anche cancel the goals. It provide an user interface the allows to the user to manage the robot in order to:
         <ol>
@@ -139,29 +72,99 @@ The program use the launch file "simulation_gmapping.launch" to run the simulate
             <li>Cancel the current goal.</li>
             <li>Be driven by the user through the keyboard (the list of commands is printed on the console).</li>
         </ol>
-        A short description of the program behavior is this one:
-        <pre><code>
-        FUNCTION manualDriving
-            WHILE user does not quit
-                TAKE user input through the keyboard
-                EXEC corresponding task
-                PUBLISH new robot velocity
-            ENDWHILE
-        ENDFUNCTION
-        <br>
-        FUNCTION userInterface 
-            WHILE user does not quit
-                TAKE user input through the keyboard
-                EXEC corresponding task
-            ENDWHILE
-        <br>
-        FUNCTION main WITH (argc, argv)
-            INITIALIZE the node "interface"
-            CALL interface
-        ENDFUNCTION
-        </code></pre>
     </li>
 </ul>
+
+In the 'final_robot.cpp' file you can change 3 constant values to modify some aspect of the program:
+<ul>
+    <li>DIST: minimum distance from the wall with the driving assistance enabled.</li>
+    <li>POS_ERROR: position range error.</li>
+    <li>MAX_TIME: maximum time to reach a goal (microseconds).</li>
+</ul>
+In the code these appear like:
+``` cpp
+#define DIST 0.35 
+#define POS_ERROR 0.5 
+#define MAX_TIME 120000000 
+```
+<br>
+
+'final_robot.cpp' pseudocode:
+<pre><code>
+FUNCTION drivingAssistance WITH (msg)
+    COMPUTE minimum distance on the right
+    COMPUTE minimum distance in the middle
+    COMPUTE minimum distance on the left
+    <br> 
+    IF driving assistance is enabled AND
+        the robot is going against a wall THEN
+        SET robot velocity TO 0
+        PUBLISH robot velocity
+    ENDIF
+    <br>
+    IF a goal position is set THEN
+        COMPUTE the time elapsed
+        IF the time elapsed IS GREATER THAN 120 seconds THEN
+            DELETE current goal
+        ENDIF
+    ENDIF
+ENDFUNCTION
+<br>
+FUNCTION currentStatus WITH (msg) 
+    SET current robot position
+    COMPUTE the difference between the current robot position
+    and the current goal position
+    IF the difference IS LESS THAN 0.5 THEN
+        STOP to compute the elapsed time
+    ENDIF
+ENDFUNCTION
+<br>
+FUNCTION currentGoal WITH (msg)
+    SET current goal position
+ENDFUNCTION
+<br>
+FUNCTION main WITH (argc, argv)
+    INITIALIZE the node "final_robot"
+    <br>
+    SET the second publisher TO "move_base/cancel"
+    SET the third publisher TO "cmd_vel"
+    <br>
+    SET the first subscriber TO "/move_base/feedback" WITH currentStatus
+    SET the second subscriber TO "/move_base/goal" WITH currentGoal
+    SET the third subscriber TO "/scan" WITH drivingAssistance
+    <br>
+    INITIALIZE spinner WITH 3 threads
+    START spinner
+    WAIT for the user 
+    STOP spinner
+    CALL ros::shutdown
+    CALL ros::waitForShutdown
+    <br>
+    RETURN 0
+ENDFUNCTION
+</code></pre>
+
+'interface.py' pseudocode:
+<pre><code>
+FUNCTION manualDriving
+    WHILE user does not quit
+        TAKE user input through the keyboard
+        EXEC corresponding task
+        PUBLISH new robot velocity
+    ENDWHILE
+ENDFUNCTION
+<br>
+FUNCTION userInterface 
+    WHILE user does not quit
+        TAKE user input through the keyboard
+        EXEC corresponding task
+    ENDWHILE
+<br>
+FUNCTION main WITH (argc, argv)
+    INITIALIZE the node "interface"
+    CALL interface
+ENDFUNCTION
+</code></pre>
 
 <a name="installation"></a>
 ### Installation and Execution
