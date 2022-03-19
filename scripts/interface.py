@@ -6,7 +6,6 @@
 # @copyright Copyright (c) 2022
 
 # ROS headers
-from typing import Counter
 import rospy
 import actionlib
 from geometry_msgs.msg import Twist
@@ -126,7 +125,7 @@ def interface():
     counter1 = 10 
     flag = 0 
     goal_flag = 0;
-    rospy.set_param('/goal_flag', goal_flag) # Check if there is a goal
+    rospy.set_param('/goal_flag', goal_flag)
     
     while (res != '0'):
         # Print command list

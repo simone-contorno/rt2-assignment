@@ -105,7 +105,12 @@ void drivingAssistance(const sensor_msgs::LaserScan::ConstPtr& msg) {
             printf("Goal cancelled.\n");
             ros::param::set("/goal_flag", 0);
         }
-    }   
+    }
+    else if (goal_flag == 0) {
+        actionlib_msgs::GoalID canc_goal;
+        canc_goal.id = id;
+        pub_canc.publish(canc_goal);
+    }  
 }
 
 /**
@@ -145,6 +150,7 @@ void currentStatus(const move_base_msgs::MoveBaseActionFeedback::ConstPtr& msg) 
     // Update the goal ID if there is a new goal
     if (id != msg->status.goal_id.id) {
         printf("\nNew goal registered.\n");
+        ros::param::set("/goal_flag", 1);
         id = msg->status.goal_id.id;
         t_start = std::chrono::high_resolution_clock::now();
     }
