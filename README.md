@@ -77,13 +77,13 @@ The program use the launch file "simulation_gmapping.launch" to run the simulate
             COMPUTE minimum distance on the right
             COMPUTE minimum distance in the middle
             COMPUTE minimum distance on the left
-            
+            <br> 
             IF driving assistance is enabled AND
                 the robot is going against a wall THEN
                 SET robot velocity TO 0
                 PUBLISH robot velocity
             ENDIF
-
+            <br>
             IF a goal position is set THEN
                 COMPUTE the time elapsed
                 IF the time elapsed IS GREATER THAN 120 seconds THEN
@@ -91,7 +91,7 @@ The program use the launch file "simulation_gmapping.launch" to run the simulate
                 ENDIF
             ENDIF
         ENDFUNCTION
-
+        <br>
         FUNCTION currentStatus WITH (msg) 
             SET current robot position
             COMPUTE the difference between the current robot position
@@ -100,28 +100,28 @@ The program use the launch file "simulation_gmapping.launch" to run the simulate
                 STOP to compute the elapsed time
             ENDIF
         ENDFUNCTION
-
+        <br>
         FUNCTION currentGoal WITH (msg)
             SET current goal position
         ENDFUNCTION
-
+        <br>
         FUNCTION main WITH (argc, argv)
             INITIALIZE the node "final_robot"
-
+            <br>
             SET the second publisher TO "move_base/cancel"
             SET the third publisher TO "cmd_vel"
-
+            <br>
             SET the first subscriber TO "/move_base/feedback" WITH currentStatus
             SET the second subscriber TO "/move_base/goal" WITH currentGoal
             SET the third subscriber TO "/scan" WITH drivingAssistance
-
+            <br>
             INITIALIZE spinner WITH 3 threads
             START spinner
             WAIT for the user 
             STOP spinner
             CALL ros::shutdown
             CALL ros::waitForShutdown
-
+            <br>
             RETURN 0
         ENDFUNCTION
         </code></pre>
@@ -148,14 +148,13 @@ The program use the launch file "simulation_gmapping.launch" to run the simulate
                 PUBLISH new robot velocity
             ENDWHILE
         ENDFUNCTION
-
+        <br>
         FUNCTION userInterface 
             WHILE user does not quit
                 TAKE user input through the keyboard
                 EXEC corresponding task
             ENDWHILE
-        ENDFUNCTION
-
+        <br>
         FUNCTION main WITH (argc, argv)
             INITIALIZE the node "interface"
             CALL interface
@@ -191,19 +190,15 @@ Launch the launch file:
 Alternatively, if you don't want intall xterm, you can open 4 terminals and:
 <ul> 
     <li>In the first one launch the environment:
-
         <pre><code>roslaunch final_assignment simulation_gmapping.launch</code></pre>
     </li>
     <li>In the second one launch the action move_base:
-
         <pre><code>roslaunch final_assignment move_base.launch</code></pre>
     </li>
     <li>In the third one run the node final_robot:
-
         <pre><code>rosrun final_assignment final_robot</code></pre>
     </li>
     <li>In the fouth one run the node interface:
-
         <pre><code>rosrun final_assignment interface</code></pre>
     </li>
 </ul>
