@@ -49,12 +49,18 @@ The program use the launch file "simulation_gmapping.launch" to run the simulate
     <li>move_base/cancel to cancel the current goal.</li>
 </ul>
 
-There are 3 subscribers that run simultaneously thanks to a multi-thread architecture given by the ROS class AsyncSpinner:
+'move_base' can also be used as an Action Server. This program use both the methods; in particular, there are 2 files:
 <ul>
-    <li>sub_pos: subscribes to the topic /move_base/feedback through the function currentStatus that continuosly update the current goal ID and check whether the robot has reached the goal position.</li>
-    <li>sub_goal: subscribes to the topic /move_base/goal through the function currentGoal that continuosly update the current goal coordinates.</li>
-    <li>sub_laser: subscribes to the topic /scan through the function drivingAssistance that continuosly take data by the laser scanner and, if the driving assistance is enabled, help the user to drive the robot stopping its if there is a wall too close in the current direction.</li>
-</ul>
+    <li>final_robot.cpp : uses 'move_base' topics to receive the feedback and cancel the current goal if this is not reached within a certain amount 
+        of time (assuming that the goal point cannot be reached). The main aim of this node is to manage the "logic" of the robot; in particular:
+        <ul>
+            <li>sub_pos: subscribes to the topic /move_base/feedback through the function currentStatus that continuosly update the current goal ID and check whether the robot has reached the goal position.</li>
+            <li>sub_goal: subscribes to the topic /move_base/goal through the function currentGoal that continuosly update the current goal coordinates. </li>
+            <li>sub_laser: subscribes to the topic /scan through the function drivingAssistance that continuosly take data by the laser scanner and, if the driving assistance is enabled, help the user to drive the robot stopping its if there is a wall too close in the current direction.</li>
+        </ul>
+    </li>
+There are 3 subscribers that run simultaneously thanks to a multi-thread architecture given by the ROS class AsyncSpinner:
+
 
 The robot can:
 <ol>
