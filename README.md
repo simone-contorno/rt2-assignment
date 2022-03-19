@@ -89,7 +89,7 @@ In the code these appear like:
 ```
 <br>
 
-'final_robot.cpp' pseudo-code:
+'final_robot.cpp' pseudocode:
 <pre><code>
 FUNCTION drivingAssistance WITH (msg)
     COMPUTE minimum distance on the right
@@ -144,7 +144,7 @@ FUNCTION main WITH (argc, argv)
 ENDFUNCTION
 </code></pre>
 
-'interface.py' pseudo-code:
+'interface.py' pseudocode:
 <pre><code>
 FUNCTION manualDriving
     WHILE user does not quit

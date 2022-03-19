@@ -5,7 +5,7 @@
  * @file final_robot.cpp
  * @author Simone Contorno (@simone-contorno)
  * 
- * @copyright Copyright (c) 2021
+ * @copyright Copyright (c) 2022
  */
 
 // Headers
@@ -21,8 +21,7 @@
 #include "move_base_msgs/MoveBaseActionFeedback.h"
 
 // Declare the publishers
-ros::Publisher pub_goal;
-ros::Publisher pub_canc;
+ros::Publisher pub_canc; 
 ros::Publisher pub_vel;
 
 float x_goal; // Current goal coordinate x
@@ -51,9 +50,9 @@ void drivingAssistance(const sensor_msgs::LaserScan::ConstPtr& msg) {
     float right = 30.0;
     int i;
     int drive_flag = 0; // Enable/Disable driving assistance
-    int time_flag = 0; // Compute the time elapsed since the request of the current goal
+    int goal_flag = 0; // Compute the time elapsed since the request of the current goal
     int print_flag = 0; // Just to manage printing
-    int key_flag = 3; 
+    int key_flag = 3; // Check the current key choosen by the user
 
     // Take value in the parameters server
     if (ros::param::has("/key_flag")) {
@@ -62,8 +61,11 @@ void drivingAssistance(const sensor_msgs::LaserScan::ConstPtr& msg) {
     if (ros::param::has("/drive_flag")) {
         ros::param::get("/drive_flag", drive_flag);
     }
-    if (ros::param::has("/time_flag")) {
-        ros::param::get("/time_flag", time_flag);
+    if (ros::param::has("/goal_flag")) {
+        ros::param::get("/goal_flag", goal_flag);
+    }
+    if (ros::param::has("/print_flag")) {
+        ros::param::get("/print_flag", print_flag);
     }
 
     // Take the minimum values
@@ -82,9 +84,6 @@ void drivingAssistance(const sensor_msgs::LaserScan::ConstPtr& msg) {
 
     // Driving assistance
     if (drive_flag == 1 & ((mid < DIST && key_flag == 0) || (left < DIST && key_flag == 1) || (right < DIST && key_flag == 2))) {
-        if (ros::param::has("/print_flag")) {
-            ros::param::get("/print_flag", print_flag);
-        }
         if (print_flag == 0) {
             printf("\nThe robot is too close to the wall!\n");
             ros::param::set("/print_flag", 1);
@@ -95,7 +94,7 @@ void drivingAssistance(const sensor_msgs::LaserScan::ConstPtr& msg) {
     }
 
     // Check for the max time available to reach a goal point
-    if (time_flag == 1) {
+    if (goal_flag == 1) {
         t_end = std::chrono::high_resolution_clock::now();
         auto time = std::chrono::duration_cast<std::chrono::microseconds>(t_end - t_start).count();
         //printf("TIME: %ld\n", time);
@@ -105,7 +104,7 @@ void drivingAssistance(const sensor_msgs::LaserScan::ConstPtr& msg) {
             canc_goal.id = id;
             pub_canc.publish(canc_goal);
             printf("Goal cancelled.\n");
-            ros::param::set("/time_flag", 0);
+            ros::param::set("/goal_flag", 0);
         }
     }   
 }
@@ -142,12 +141,12 @@ void currentStatus(const move_base_msgs::MoveBaseActionFeedback::ConstPtr& msg) 
 
     // The robot is on the goal position
     if (diff_x <= POS_ERROR && diff_y <= POS_ERROR) 
-        ros::param::set("/time_flag", 0);
+        ros::param::set("/goal_flag", 0);
 
     // Update the goal ID if there is a new goal
     if (id != msg->status.goal_id.id) {
         printf("\nNew goal registered.\n");
-        ros::param::set("/time_flag", 1);
+        ros::param::set("/goal_flag", 1);
         id = msg->status.goal_id.id;
         t_start = std::chrono::high_resolution_clock::now();
     }
@@ -178,7 +177,6 @@ int main(int argc, char **argv) {
     t_start = std::chrono::high_resolution_clock::now();
 
     // Define the publishers
-    pub_goal = nh.advertise<move_base_msgs::MoveBaseActionGoal>("move_base/goal", 1000);
     pub_canc = nh.advertise<actionlib_msgs::GoalID>("move_base/cancel", 1000);
     pub_vel = nh.advertise<geometry_msgs::Twist>("/cmd_vel", 1000);
     

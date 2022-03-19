@@ -154,14 +154,14 @@ def interface():
         
         # Exit
         if res == '0':
-            rospy.set_param('/time_flag', 0)
+            rospy.set_param('/goal_flag', 0)
             client.cancel_goal()
         
         # Publish new goal
         elif res == '1':
             print("\nInsert coordinates to reach:");
-            x = input("X: ");
-            y = input("Y: ");
+            x = input("x: ");
+            y = input("y: ");
             
             if type(x) != 'float' or type(y) != 'float':
                 print("Coordinates not valid, please instert only numbers.")
@@ -182,7 +182,7 @@ def interface():
         # Cancel current goal
         elif res == '2':
             if goal_flag == 1:
-                rospy.set_param('/time_flag', 0)
+                rospy.set_param('/goal_flag', 0)
                 client.cancel_goal()
                 goal_flag = 0
                 print("Goal cancelled.\n")
@@ -192,7 +192,7 @@ def interface():
         # Manual driving
         elif res == '3':
             if goal_flag == 1:
-                rospy.set_param('/time_flag', 0)
+                rospy.set_param('/goal_flag', 0)
                 client.cancel_goal()
             (flag, counter1) = manualDriving(flag)
         
