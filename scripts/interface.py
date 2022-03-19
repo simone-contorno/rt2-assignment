@@ -163,7 +163,10 @@ def interface():
             x = input("x: ");
             y = input("y: ");
             
-            if type(x) != 'float' or type(y) != 'float':
+            try:
+                x = float(x)
+                y = float(y)
+            except:
                 print("Coordinates not valid, please instert only numbers.")
                 continue
 

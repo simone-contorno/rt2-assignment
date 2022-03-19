@@ -97,7 +97,6 @@ void drivingAssistance(const sensor_msgs::LaserScan::ConstPtr& msg) {
     if (goal_flag == 1) {
         t_end = std::chrono::high_resolution_clock::now();
         auto time = std::chrono::duration_cast<std::chrono::microseconds>(t_end - t_start).count();
-        //printf("TIME: %ld\n", time);
         if (time > MAX_TIME) {
             actionlib_msgs::GoalID canc_goal;
             printf("\nThe goal point can't be reached!\n");
@@ -146,7 +145,6 @@ void currentStatus(const move_base_msgs::MoveBaseActionFeedback::ConstPtr& msg) 
     // Update the goal ID if there is a new goal
     if (id != msg->status.goal_id.id) {
         printf("\nNew goal registered.\n");
-        ros::param::set("/goal_flag", 1);
         id = msg->status.goal_id.id;
         t_start = std::chrono::high_resolution_clock::now();
     }

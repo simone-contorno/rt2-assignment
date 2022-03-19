@@ -75,6 +75,14 @@ The program use the launch file "simulation_gmapping.launch" to run the simulate
     </li>
 </ul>
 
+The two files communicates through some server parameters, which are:
+<ul>
+    <li>key_flag : check the current key choosen by the user;</li>
+    <li>goal_flag : compute the time elapsed since the request of the current goal:</li>
+    <li>drive_flag : enable/disable driving assistance;</li>
+    <li>print_flag : just to manage printing.</li>
+</ul>
+
 In the 'final_robot.cpp' file you can change 3 constant values to modify some aspect of the program:
 <ul>
     <li>DIST: minimum distance from the wall with the driving assistance enabled.</li>
