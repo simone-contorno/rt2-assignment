@@ -1,0 +1,6 @@
+<launch>
+    <include file="$(find rt2_robot)/launch/simulation_gmapping.launch" />
+    <include file="$(find rt2_robot)/launch/move_base_xterm.launch" />
+    <node pkg="rt2_robot" type="rt2_robot_logic" name="rt2_robot_logic" output="screen" required="true" launch-prefix="xterm -e" />
+        <node pkg="rt2_robot" type="rt2_robot_interface.py" name="rt2_robot_interface" output="screen" required="true" launch-prefix="xterm -e" />
+</launch>

@@ -51,7 +51,7 @@ The program use the launch file "simulation_gmapping.launch" to run the simulate
 
 'move_base' can also be used as an Action Server. This program use both the methods; in particular, there are 2 files:
 <ul>
-    <li>final_robot.cpp : uses 'move_base' topics to receive the feedback and cancel the current goal if this is not reached within a certain amount of time (assuming that the goal point cannot be reached). The main aim of this node is to manage the "logic" of the robot; in particular, there are 3 subscribers that run simultaneously thanks to a multi-thread architecture given by the ROS class AsyncSpinner::
+    <li>rt2_robot_logic.cpp : uses 'move_base' topics to receive the feedback and cancel the current goal if this is not reached within a certain amount of time (assuming that the goal point cannot be reached). The main aim of this node is to manage the "logic" of the robot; in particular, there are 3 subscribers that run simultaneously thanks to a multi-thread architecture given by the ROS class AsyncSpinner::
         <ul>
             <li>sub_pos: subscribes to the topic /move_base/feedback through the function currentStatus that continuosly update the current goal ID and check whether the robot has reached the goal position.</li>
             <li>sub_goal: subscribes to the topic /move_base/goal through the function currentGoal that continuosly update the current goal coordinates. </li>
@@ -59,7 +59,7 @@ The program use the launch file "simulation_gmapping.launch" to run the simulate
         </ul>
         <br>
     </li>
-    <li>interface.py : uses 'move_base' as an Action Server to publish anche cancel the goals. It provide an user interface the allows to the user to manage the robot in order to:
+    <li>rt2_robot_interface.py : uses 'move_base' as an Action Server to publish anche cancel the goals. It provide an user interface the allows to the user to manage the robot in order to:
         <ol>
             <li>Autonomously reaching a goal position: 
                 <ul>
@@ -83,7 +83,7 @@ The two files communicates through some server parameters, which are:
     <li>print_flag : just to manage printing.</li>
 </ul>
 
-In the 'final_robot.cpp' file you can change 3 constant values to modify some aspect of the program:
+In the 'rt2_robot_logic.cpp' file you can change 3 constant values to modify some aspect of the program:
 <ul>
     <li>DIST: minimum distance from the wall with the driving assistance enabled.</li>
     <li>POS_ERROR: position range error.</li>
@@ -152,7 +152,7 @@ FUNCTION main WITH (argc, argv)
 ENDFUNCTION
 </code></pre>
 
-'interface.py' pseudocode:
+'rt2_robot_interface.py' pseudocode:
 <pre><code>
 FUNCTION manualDriving
     WHILE user does not quit
@@ -196,25 +196,25 @@ Now, to launch all these nodes using the launch file final_assignment.launch, in
 
 Launch the launch file:
 
-<pre><code>roslaunch final_assignment final_assignment.launch</code></pre>
+<pre><code>roslaunch rt2_robot rt2_robot.launch</code></pre>
 
 Alternatively, if you don't want intall xterm, you can open 4 terminals and:
 <ul> 
     <li>In the first one launch the environment:
-        <pre><code>roslaunch final_assignment simulation_gmapping.launch</code></pre>
+        <pre><code>roslaunch rt2_robot simulation_gmapping.launch</code></pre>
     </li>
     <li>In the second one launch the action move_base:
-        <pre><code>roslaunch final_assignment move_base.launch</code></pre>
+        <pre><code>roslaunch rt2_robot move_base.launch</code></pre>
     </li>
     <li>In the third one run the node final_robot:
-        <pre><code>rosrun final_assignment final_robot</code></pre>
+        <pre><code>rosrun rt2_robot final_robot</code></pre>
     </li>
     <li>In the fouth one run the node interface:
-        <pre><code>rosrun final_assignment interface</code></pre>
+        <pre><code>rosrun rt2_robot interface</code></pre>
     </li>
 </ul>
 
-In this second case, be careful to run the final_robot before starting to use the user interface, otherwise you can encounter some troubles!
+In this second case, be careful to run the rt2_robot_logic before starting to use the user interface, otherwise you can encounter some troubles!
 
 <a name="improve"></a>
 ### Improvements
