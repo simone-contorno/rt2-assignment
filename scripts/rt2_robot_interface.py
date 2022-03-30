@@ -1,9 +1,36 @@
-# Robotics control in a simulated environment
-# Robotics Engineering
+## @package rt2_robot
+# \file rt2_robot_interface.py
+# \author Simone Contorno (simone.contorno@outlook.it)
+# \brief Robotics control in a simulated environment
+# \version 1.0
+# \date 2022-03-25
 # 
-# @file ui.py
-# @author Simone Contorno (@simone-contorno)
-# @copyright Copyright (c) 2022
+# \copyright Copyright (c) 2022
+# 
+# \details 
+# 
+# Server parameters: <br>
+# param key_flag define the type of keyboard input insert by the user (input). <br>
+# param drive_flag define if the manual driving assistance is enable or not (input). <br>
+# param goal_flag define if a goal is set or not (input). <br>
+# param print_flag define if the warning sentence, about a wall to close to the robot, has been printed or not (input). <br>
+# 
+# Publishers to: <br>
+# /move_base/cancel <br>
+# /cmd_vel
+# 
+# Subscribers to: <br>
+# /move_base/feedback <br>
+# /move_base/goal <br>
+# /scan
+# 
+# Description: <br>
+# This nodes simulate the 'logic' of the robot. <br>
+# Managing publishers, subscribers and server parameters it is able to avoid the crashing of 
+# the robot against a wall, if asked by the user, and register how many targets
+# it reached and how many not. <br>
+# A target is considered 'not reached' when the robot does not reach it within 2 minutes, then the goal is cancelled.
+# 
 
 # ROS headers
 import rospy
@@ -11,12 +38,25 @@ import actionlib
 from geometry_msgs.msg import Twist
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 
+# Global variables
+## Manages the interface printing
+counter1 = 10 
+
+## Defines if the driving assistance is enabled or not
+flag = 0 
+
 # Manual driving
-def manualDriving(flag):
+def manualDriving():
+    '''
+    Provides an interface to manually drive the robot, managing its linear and angular velocities.
+    '''
+    
     # Publisher declaration
     pub_vel = rospy.Publisher("/cmd_vel", Twist, queue_size = 1000)
     robot_vel = Twist() 
     
+    global flag 
+    global counter1
     lin_vel = 0.0 # Robot linear velocity
     ang_vel = 0.0 # Robot angular velocity
     counter2 = 10
@@ -112,18 +152,25 @@ def manualDriving(flag):
         print("Angular velocity: ", ang_vel)
         pub_vel.publish(robot_vel)
         counter2 += 1
-
-    return flag, counter1
     
 # Show the UI
 def interface():
+    '''
+    Provides an interface to choose among different options, which are: 
+    0 - Exit and close the program.
+    1 - Insert new coordinates to reach.
+    2 - Cancel the current goal.
+    3 - Pass to the manual driving interface.
+    4 - Enable/Disable the driving assistance.
+    '''
+    
+    global flag 
+    global counter1
+    
     client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
     client.wait_for_server()
     res = '5'
     
-    # Manage printing
-    counter1 = 10 
-    flag = 0 
     goal_flag = 0;
     rospy.set_param('/goal_flag', goal_flag)
     
@@ -196,7 +243,7 @@ def interface():
             if goal_flag == 1:
                 rospy.set_param('/goal_flag', 0)
                 client.cancel_goal()
-            (flag, counter1) = manualDriving(flag)
+            manualDriving()
         
         # Enable/Disable driving assistance
         elif res == '4':
@@ -210,13 +257,17 @@ def interface():
                 print("\nDriving assistance disabled.\n")
             
 def main():
+    '''
+    Starts the User Interface (UI) to control the robot.
+    '''
+    
     print("\nWelcome to the User Interface!\n"
         "Here you can choose between two different "
         "modalities to control your robot: automatic "
         "goal reaching or manual driving, with or without "
         "the driving assistance!")
     
-    rospy.init_node("interface")    
+    rospy.init_node("rt2_robot_ui")    
     interface()
     print("\nBye.\n")
 
