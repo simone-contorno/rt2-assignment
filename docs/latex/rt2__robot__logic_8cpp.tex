@@ -1,0 +1,192 @@
+\hypertarget{rt2__robot__logic_8cpp}{}\doxysection{src/rt2\+\_\+robot\+\_\+logic.cpp File Reference}
+\label{rt2__robot__logic_8cpp}\index{src/rt2\_robot\_logic.cpp@{src/rt2\_robot\_logic.cpp}}
+
+
+Robotics control in a simulated environment.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include \char`\"{}ros/ros.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}geometry\+\_\+msgs/\+Twist.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sensor\+\_\+msgs/\+Laser\+Scan.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}actionlib\+\_\+msgs/\+Goal\+I\+D.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}move\+\_\+base\+\_\+msgs/\+Move\+Base\+Action\+Goal.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}move\+\_\+base\+\_\+msgs/\+Move\+Base\+Action\+Feedback.\+h\char`\"{}}\newline
+Include dependency graph for rt2\+\_\+robot\+\_\+logic.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rt2__robot__logic_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{rt2__robot__logic_8cpp_ab8a17bd7aebfe396839620a814ec3e4d}\label{rt2__robot__logic_8cpp_ab8a17bd7aebfe396839620a814ec3e4d}} 
+\#define \mbox{\hyperlink{rt2__robot__logic_8cpp_ab8a17bd7aebfe396839620a814ec3e4d}{D\+I\+ST}}~0.\+35
+\begin{DoxyCompactList}\small\item\em Minimum distance from the wall with the driving assistance enabled. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{rt2__robot__logic_8cpp_a37f19123b1bf294dc694a2f59a9c28b7}\label{rt2__robot__logic_8cpp_a37f19123b1bf294dc694a2f59a9c28b7}} 
+\#define \mbox{\hyperlink{rt2__robot__logic_8cpp_a37f19123b1bf294dc694a2f59a9c28b7}{P\+O\+S\+\_\+\+E\+R\+R\+OR}}~0.\+5
+\begin{DoxyCompactList}\small\item\em Position range error. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{rt2__robot__logic_8cpp_a5320d4457a472d8888ec1905bc0e0a1c}\label{rt2__robot__logic_8cpp_a5320d4457a472d8888ec1905bc0e0a1c}} 
+\#define \mbox{\hyperlink{rt2__robot__logic_8cpp_a5320d4457a472d8888ec1905bc0e0a1c}{M\+A\+X\+\_\+\+T\+I\+ME}}~120000000
+\begin{DoxyCompactList}\small\item\em Maximum time to reach a goal (microseconds) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{rt2__robot__logic_8cpp_a4c43c60aa1f08799d4154361b6749d90}{driving\+Assistance}} (const sensor\+\_\+msgs\+::\+Laser\+Scan\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em Check data from robot\textquotesingle{}s laser scanner and, if the driving assistance is enable, help the user to not crush the robot against a wall. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rt2__robot__logic_8cpp_abe5ed94ffa1a53d79c5a39fa0f0b1b31}{current\+Status}} (const move\+\_\+base\+\_\+msgs\+::\+Move\+Base\+Action\+Feedback\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em Check if the robot is on the goal position and, when there is a new goal, update the current Goal ID and save its in a global variable. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rt2__robot__logic_8cpp_ae4710b8905b07ffceb0b3c89d11db805}{current\+Goal}} (const move\+\_\+base\+\_\+msgs\+::\+Move\+Base\+Action\+Goal\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em Check the current goal position and saves its module coordinates x and y in two global variables. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rt2__robot__logic_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Starts the logic of the robot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{rt2__robot__logic_8cpp_a96d80f80cfea8442d70360b35cebb05a}\label{rt2__robot__logic_8cpp_a96d80f80cfea8442d70360b35cebb05a}} 
+ros\+::\+Publisher \mbox{\hyperlink{rt2__robot__logic_8cpp_a96d80f80cfea8442d70360b35cebb05a}{pub\+\_\+canc}}
+\begin{DoxyCompactList}\small\item\em publish to /move\+\_\+base/cancel \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{rt2__robot__logic_8cpp_ac0664a23d360105ec3d579965d5b7631}\label{rt2__robot__logic_8cpp_ac0664a23d360105ec3d579965d5b7631}} 
+ros\+::\+Publisher \mbox{\hyperlink{rt2__robot__logic_8cpp_ac0664a23d360105ec3d579965d5b7631}{pub\+\_\+vel}}
+\begin{DoxyCompactList}\small\item\em publish to /cmd\+\_\+vel \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{rt2__robot__logic_8cpp_a829831b69f522e8f5ae5dcdc28158d3e}\label{rt2__robot__logic_8cpp_a829831b69f522e8f5ae5dcdc28158d3e}} 
+float \mbox{\hyperlink{rt2__robot__logic_8cpp_a829831b69f522e8f5ae5dcdc28158d3e}{x\+\_\+goal}}
+\begin{DoxyCompactList}\small\item\em Current goal coordinate x. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{rt2__robot__logic_8cpp_a20e8d23393e688fc52779c872bdc1e45}\label{rt2__robot__logic_8cpp_a20e8d23393e688fc52779c872bdc1e45}} 
+float \mbox{\hyperlink{rt2__robot__logic_8cpp_a20e8d23393e688fc52779c872bdc1e45}{y\+\_\+goal}}
+\begin{DoxyCompactList}\small\item\em Current goal coordinate y. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{rt2__robot__logic_8cpp_a0f62d47c1df4bd3307728ad59a2b3aa0}\label{rt2__robot__logic_8cpp_a0f62d47c1df4bd3307728ad59a2b3aa0}} 
+int \mbox{\hyperlink{rt2__robot__logic_8cpp_a0f62d47c1df4bd3307728ad59a2b3aa0}{reached\+\_\+goal}} = 0
+\begin{DoxyCompactList}\small\item\em Number of reached goals. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{rt2__robot__logic_8cpp_afe81a25497ea02b538ccb446b124bd73}\label{rt2__robot__logic_8cpp_afe81a25497ea02b538ccb446b124bd73}} 
+int \mbox{\hyperlink{rt2__robot__logic_8cpp_afe81a25497ea02b538ccb446b124bd73}{non\+\_\+reached\+\_\+goal}} = 0
+\begin{DoxyCompactList}\small\item\em Number of not reached goals. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{rt2__robot__logic_8cpp_afd0d68c6d31ff249f3ae8662162663c3}\label{rt2__robot__logic_8cpp_afd0d68c6d31ff249f3ae8662162663c3}} 
+std\+::string \mbox{\hyperlink{rt2__robot__logic_8cpp_afd0d68c6d31ff249f3ae8662162663c3}{id}} = \char`\"{}\char`\"{}
+\begin{DoxyCompactList}\small\item\em Goal ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{rt2__robot__logic_8cpp_a56dfe2d1d81baf89618ad0eea48492dd}\label{rt2__robot__logic_8cpp_a56dfe2d1d81baf89618ad0eea48492dd}} 
+std\+::chrono\+::high\+\_\+resolution\+\_\+clock\+::time\+\_\+point \mbox{\hyperlink{rt2__robot__logic_8cpp_a56dfe2d1d81baf89618ad0eea48492dd}{t\+\_\+start}}
+\begin{DoxyCompactList}\small\item\em Starting time goal reaching. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{rt2__robot__logic_8cpp_af809b6c0c27825d8deb9f5cdbd0709db}\label{rt2__robot__logic_8cpp_af809b6c0c27825d8deb9f5cdbd0709db}} 
+std\+::chrono\+::high\+\_\+resolution\+\_\+clock\+::time\+\_\+point \mbox{\hyperlink{rt2__robot__logic_8cpp_af809b6c0c27825d8deb9f5cdbd0709db}{t\+\_\+end}}
+\begin{DoxyCompactList}\small\item\em Ending time goal reaching. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Robotics control in a simulated environment. 
+
+\begin{DoxyAuthor}{Author}
+Simone Contorno (\href{mailto:simone.contorno@outlook.it}{\texttt{ simone.\+contorno@outlook.\+it}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/03-\/25
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022
+\end{DoxyCopyright}
+Server parameters\+: ~\newline
+ 
+\begin{DoxyParams}{Parameters}
+{\em key\+\_\+flag} & define the type of keyboard input insert by the user (output). \\
+\hline
+{\em drive\+\_\+flag} & define if the manual driving assistance is enable or not (output). \\
+\hline
+{\em goal\+\_\+flag} & define if a goal is set or not (input \& output). \\
+\hline
+{\em print\+\_\+flag} & define if the warning sentence, about a wall to close to the robot, has been printed or not (input \& output).\\
+\hline
+\end{DoxyParams}
+Publishers to\+: ~\newline
+ /move\+\_\+base/cancel ~\newline
+ /cmd\+\_\+vel
+
+Subscribers to\+: ~\newline
+ /move\+\_\+base/feedback ~\newline
+ /move\+\_\+base/goal ~\newline
+ /scan
+
+Description\+: ~\newline
+ This nodes simulate the \textquotesingle{}logic\textquotesingle{} of the robot. ~\newline
+ Managing publishers, subscribers and server parameters it is able to avoid the crashing of the robot against a wall, if asked by the user, and register how many targets it reached and how many not. ~\newline
+ A target is considered \textquotesingle{}not reached\textquotesingle{} when the robot does not reach it within 2 minutes, then the goal is cancelled. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{rt2__robot__logic_8cpp_ae4710b8905b07ffceb0b3c89d11db805}\label{rt2__robot__logic_8cpp_ae4710b8905b07ffceb0b3c89d11db805}} 
+\index{rt2\_robot\_logic.cpp@{rt2\_robot\_logic.cpp}!currentGoal@{currentGoal}}
+\index{currentGoal@{currentGoal}!rt2\_robot\_logic.cpp@{rt2\_robot\_logic.cpp}}
+\doxysubsubsection{\texorpdfstring{currentGoal()}{currentGoal()}}
+{\footnotesize\ttfamily void current\+Goal (\begin{DoxyParamCaption}\item[{const move\+\_\+base\+\_\+msgs\+::\+Move\+Base\+Action\+Goal\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+Check the current goal position and saves its module coordinates x and y in two global variables. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & defines the goal position values. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rt2__robot__logic_8cpp_abe5ed94ffa1a53d79c5a39fa0f0b1b31}\label{rt2__robot__logic_8cpp_abe5ed94ffa1a53d79c5a39fa0f0b1b31}} 
+\index{rt2\_robot\_logic.cpp@{rt2\_robot\_logic.cpp}!currentStatus@{currentStatus}}
+\index{currentStatus@{currentStatus}!rt2\_robot\_logic.cpp@{rt2\_robot\_logic.cpp}}
+\doxysubsubsection{\texorpdfstring{currentStatus()}{currentStatus()}}
+{\footnotesize\ttfamily void current\+Status (\begin{DoxyParamCaption}\item[{const move\+\_\+base\+\_\+msgs\+::\+Move\+Base\+Action\+Feedback\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+Check if the robot is on the goal position and, when there is a new goal, update the current Goal ID and save its in a global variable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & defines the robot position values. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rt2__robot__logic_8cpp_a4c43c60aa1f08799d4154361b6749d90}\label{rt2__robot__logic_8cpp_a4c43c60aa1f08799d4154361b6749d90}} 
+\index{rt2\_robot\_logic.cpp@{rt2\_robot\_logic.cpp}!drivingAssistance@{drivingAssistance}}
+\index{drivingAssistance@{drivingAssistance}!rt2\_robot\_logic.cpp@{rt2\_robot\_logic.cpp}}
+\doxysubsubsection{\texorpdfstring{drivingAssistance()}{drivingAssistance()}}
+{\footnotesize\ttfamily void driving\+Assistance (\begin{DoxyParamCaption}\item[{const sensor\+\_\+msgs\+::\+Laser\+Scan\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+Check data from robot\textquotesingle{}s laser scanner and, if the driving assistance is enable, help the user to not crush the robot against a wall. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & defines the laser scan values. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rt2__robot__logic_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{rt2__robot__logic_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{rt2\_robot\_logic.cpp@{rt2\_robot\_logic.cpp}!main@{main}}
+\index{main@{main}!rt2\_robot\_logic.cpp@{rt2\_robot\_logic.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Starts the logic of the robot. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & \\
+\hline
+{\em argv} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+Subscriber on /move\+\_\+base/feedback
+
+Subscriber on /move\+\_\+base/goal
+
+Subscriber on /scan
