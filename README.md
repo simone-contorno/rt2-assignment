@@ -1,6 +1,5 @@
-# RT2-Assignment
-## Assignment of Research Track 2 - Robotics Engineering
-### Author: Simone Contorno
+# Research Track 2 assignment - Robotics Engineering
+## Author: Simone Contorno
 
 <br>
 
@@ -15,7 +14,7 @@ A rapid description of how the program works (pseudo-code).<br>
 [Go to How it works](#how)
 
 ### Installation and Execution
-How install and run RT2-Assignment in Linux.<br>
+How install and run this program in Linux.<br>
 [Go to Installation and Execution](#installation)
 
 ### Improvements
