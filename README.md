@@ -94,6 +94,4 @@ Once open, run all the cells except for the penultimate and the last one (they h
 <a name="improve"></a>
 ### Improvements
 
-In Jupyter Notebook, when data are plotted the kernel remains busy and it cannot be possible continue to use the interfice until the plotting windows will be closed. Then, a good improvement whould be allow to the user to continue to use the interface while it is plotting the data.<br><br>
-
-Thanks to have read this file, i hope it was clear and interesting.
+In Jupyter Notebook, when data are plotted the kernel remains busy and it cannot be possible continue to use the interfice until the plotting windows will be closed. Then, a good improvement whould be allow to the user to continue to use the interface while it is plotting the data.
