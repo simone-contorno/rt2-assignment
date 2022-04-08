@@ -26,13 +26,16 @@ How Jupyter Notebook interface could be improved.<br>
 
 The main aim of this repository is provide an alternative, more modular, implementation of the program that can be downloaded at this link:<br>
 https://github.com/simone-contorno/rt-assignment-3<br><br>
-Now, the User Interface, wrote in python, is implemented in a different node and also in Jupyter.
+
+Now, the User Interface, wrote in python, is implemented in a different node and also in Jupyter. <br>
 Additionally, in Jupyter, it is possible to plot:
 <ul>
     <li>the robot position (with and without tracking all the history position);</li>
     <li>the laser scanner data;</li> 
     <li>the number of reached and non-reached goals.</li>
 </ul>
+These can be plot directly by the UI (discouraged, read the [Improvements](#improve) section), or using a dedicated cell (penultimate one).<br>
+It is also possible visualize the 3D map of Rviz running the last cell.
 
 <a name="how"></a>
 ### How it works
@@ -81,12 +84,12 @@ Alternatively, if you don't want intall xterm, you can open 4 terminals and:
 
 In this second case, be careful to run the rt2_robot_logic before starting to use the user interface, otherwise you can encounter some troubles!<br><br>
 
-If you want to use the Jupyter Notebook interface, first of all you need to start it:
+If you want to use the Jupyter Notebook interface, you need to start it:
 
 <pre><code>jupyter notebook --allow-root --ip 0.0.0.0</code></pre>
 
 Now you can access to the rt2_robot folder in your ROS workspace and open the file rt2_robot_jupyter_ui.ipynb.
-Once open, run all the cells to execute the whole program; in the cell with the interface function you will find the buttons to control the robot.
+Once open, run all the cells except for the penultimate and the last one (they have a specific function, read the comments to know more about it); in the cell with the interface function you will find the buttons to control the robot.
 
 <a name="improve"></a>
 ### Improvements
