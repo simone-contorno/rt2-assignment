@@ -1,9 +1,8 @@
 # Research Track 2 assignment - Robotics Engineering
-## Author: Simone Contorno
+## Control of a robot in a simulated environment (Jupyter Notebook)
+### Author: Simone Contorno
 
 <br>
-
-Control of a robot in a simulated environment, also using Jupyter Notebook.
 
 ### Introduction
 An overview of this program.<br>
@@ -25,7 +24,7 @@ How Jupyter Notebook interface could be improved.<br>
 ### Introduction
 
 The main aim of this repository is provide an alternative, more modular, implementation of the program that can be downloaded at this link:<br>
-https://github.com/simone-contorno/rt-assignment-3<br><br>
+https://github.com/simone-contorno/rt-assignment-3<br>
 
 Now, the User Interface, wrote in python, is implemented in a different node and also in Jupyter. <br>
 Additionally, in Jupyter, it is possible to plot:
@@ -82,7 +81,7 @@ Alternatively, if you don't want intall xterm, you can open 4 terminals and:
     </li>
 </ul>
 
-In this second case, be careful to run the rt2_robot_logic before starting to use the user interface, otherwise you can encounter some troubles!<br><br>
+In this second case, be careful to run the rt2_robot_logic before starting to use the user interface, otherwise you can encounter some troubles!<br>
 
 If you want to use the Jupyter Notebook interface, you need to start it:
 
