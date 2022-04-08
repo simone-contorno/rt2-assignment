@@ -34,7 +34,7 @@ Additionally, in Jupyter, it is possible to plot:
     <li>the laser scanner data;</li> 
     <li>the number of reached and non-reached goals.</li>
 </ul>
-These can be plot directly by the UI (discouraged, read the [Improvements](#improve) section), or using a dedicated cell (penultimate one).<br>
+These can be plot directly by the UI (discouraged, read the Improvements section), or using a dedicated cell (penultimate one).<br>
 It is also possible visualize the 3D map of Rviz running the last cell.
 
 <a name="how"></a>
