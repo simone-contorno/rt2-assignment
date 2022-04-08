@@ -78,7 +78,7 @@ Alternatively, if you don't want intall xterm, you can open 4 terminals and:
         <pre><code>rosrun rt2_robot rt2_robot_logic</code></pre>
     </li>
     <li>In the fouth one run the user interface:
-        <pre><code>rosrun rt2_robot rt2_robot_interface</code></pre>
+        <pre><code>rosrun rt2_robot rt2_robot_interface.py</code></pre>
     </li>
 </ul>
 
