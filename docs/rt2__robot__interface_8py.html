@@ -105,10 +105,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rt2__
 <dl class="section date"><dt>Date</dt><dd>2022-03-25</dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2022</dd></dl>
 <p>Server parameters: <br  />
- param key_flag define the type of keyboard input insert by the user (input). <br  />
- param drive_flag define if the manual driving assistance is enable or not (input). <br  />
- param goal_flag define if a goal is set or not (input). <br  />
- param print_flag define if the warning sentence, about a wall to close to the robot, has been printed or not (input). <br  />
+ param key_flag defines the type of keyboard input insert by the user (input). <br  />
+ param drive_flag defines if the manual driving assistance is enable or not (input). <br  />
+ param goal_flag defines if a goal is set or not (input). <br  />
+ param print_flag defines if the warning sentence, about a wall too close to the robot, has been printed or not (input). <br  />
 </p>
 <p>Publishers to: <br  />
  /move_base/cancel <br  />
@@ -118,8 +118,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rt2__
  /move_base/goal <br  />
  /scan</p>
 <p>Description: <br  />
- This nodes provides the UI (User Interface) to the user. <br  />
- He will be able to choose between different modalities. <br  />
+ This node provides the UI (User Interface) to the user. <br  />
+ He will be able to choose between two different modalities: <br  />
  1) Automatic goal reaching. <br  />
  2) Manual driving with or without the driving assistance. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -137,7 +137,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rt2__
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Provides an interface to choose among different options, which are: 
+<pre class="fragment">Provides an interface to choose among different options: 
 0 - Exit and close the program.
 1 - Insert new coordinates to reach.
 2 - Cancel the current goal.
@@ -160,7 +160,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rt2__
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Starts the User Interface (UI) to control the robot.
+<pre class="fragment">Initializes the node and starts the User Interface (UI) to control the robot.
 </pre> 
 </div>
 </div>

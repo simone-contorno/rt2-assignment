@@ -125,7 +125,7 @@ Macros</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a4c43c60aa1f08799d4154361b6749d90"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rt2__robot__logic_8cpp.html#a4c43c60aa1f08799d4154361b6749d90">drivingAssistance</a> (const sensor_msgs::LaserScan::ConstPtr &amp;msg)</td></tr>
-<tr class="memdesc:a4c43c60aa1f08799d4154361b6749d90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check data from robot's laser scanner and, if the driving assistance is enable, help the user to not crush the robot against a wall.  <a href="rt2__robot__logic_8cpp.html#a4c43c60aa1f08799d4154361b6749d90">More...</a><br /></td></tr>
+<tr class="memdesc:a4c43c60aa1f08799d4154361b6749d90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check data from robot's laser scanner and, if the driving assistance is enable, help the user not to crush the robot against a wall.  <a href="rt2__robot__logic_8cpp.html#a4c43c60aa1f08799d4154361b6749d90">More...</a><br /></td></tr>
 <tr class="separator:a4c43c60aa1f08799d4154361b6749d90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe5ed94ffa1a53d79c5a39fa0f0b1b31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rt2__robot__logic_8cpp.html#abe5ed94ffa1a53d79c5a39fa0f0b1b31">currentStatus</a> (const move_base_msgs::MoveBaseActionFeedback::ConstPtr &amp;msg)</td></tr>
 <tr class="memdesc:abe5ed94ffa1a53d79c5a39fa0f0b1b31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the robot is on the goal position and, when there is a new goal, update the current Goal ID and save its in a global variable.  <a href="rt2__robot__logic_8cpp.html#abe5ed94ffa1a53d79c5a39fa0f0b1b31">More...</a><br /></td></tr>
@@ -134,18 +134,18 @@ Functions</h2></td></tr>
 <tr class="memdesc:ae4710b8905b07ffceb0b3c89d11db805"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check the current goal position and saves its module coordinates x and y in two global variables.  <a href="rt2__robot__logic_8cpp.html#ae4710b8905b07ffceb0b3c89d11db805">More...</a><br /></td></tr>
 <tr class="separator:ae4710b8905b07ffceb0b3c89d11db805"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rt2__robot__logic_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
-<tr class="memdesc:a3c04138a5bfe5d72780bb7e82a18e627"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the logic of the robot.  <a href="rt2__robot__logic_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">More...</a><br /></td></tr>
+<tr class="memdesc:a3c04138a5bfe5d72780bb7e82a18e627"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the node and starts the logic of the robot.  <a href="rt2__robot__logic_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">More...</a><br /></td></tr>
 <tr class="separator:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a96d80f80cfea8442d70360b35cebb05a"><td class="memItemLeft" align="right" valign="top"><a id="a96d80f80cfea8442d70360b35cebb05a"></a>
 ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rt2__robot__logic_8cpp.html#a96d80f80cfea8442d70360b35cebb05a">pub_canc</a></td></tr>
-<tr class="memdesc:a96d80f80cfea8442d70360b35cebb05a"><td class="mdescLeft">&#160;</td><td class="mdescRight">publish to /move_base/cancel <br /></td></tr>
+<tr class="memdesc:a96d80f80cfea8442d70360b35cebb05a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publishes to /move_base/cancel. <br /></td></tr>
 <tr class="separator:a96d80f80cfea8442d70360b35cebb05a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0664a23d360105ec3d579965d5b7631"><td class="memItemLeft" align="right" valign="top"><a id="ac0664a23d360105ec3d579965d5b7631"></a>
 ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rt2__robot__logic_8cpp.html#ac0664a23d360105ec3d579965d5b7631">pub_vel</a></td></tr>
-<tr class="memdesc:ac0664a23d360105ec3d579965d5b7631"><td class="mdescLeft">&#160;</td><td class="mdescRight">publish to /cmd_vel <br /></td></tr>
+<tr class="memdesc:ac0664a23d360105ec3d579965d5b7631"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publishes to /cmd_vel. <br /></td></tr>
 <tr class="separator:ac0664a23d360105ec3d579965d5b7631"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a829831b69f522e8f5ae5dcdc28158d3e"><td class="memItemLeft" align="right" valign="top"><a id="a829831b69f522e8f5ae5dcdc28158d3e"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rt2__robot__logic_8cpp.html#a829831b69f522e8f5ae5dcdc28158d3e">x_goal</a></td></tr>
@@ -185,10 +185,10 @@ std::chrono::high_resolution_clock::time_point&#160;</td><td class="memItemRight
 <p>Server parameters: <br  />
  </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">key_flag</td><td>define the type of keyboard input insert by the user (output). </td></tr>
-    <tr><td class="paramname">drive_flag</td><td>define if the manual driving assistance is enable or not (output). </td></tr>
-    <tr><td class="paramname">goal_flag</td><td>define if a goal is set or not (input &amp; output). </td></tr>
-    <tr><td class="paramname">print_flag</td><td>define if the warning sentence, about a wall to close to the robot, has been printed or not (input &amp; output).</td></tr>
+    <tr><td class="paramname">key_flag</td><td>defines the type of keyboard input inserted by the user (output). </td></tr>
+    <tr><td class="paramname">drive_flag</td><td>defines if the manual driving assistance is enabled or not (output). </td></tr>
+    <tr><td class="paramname">goal_flag</td><td>defines if a goal is set or not (input &amp; output). </td></tr>
+    <tr><td class="paramname">print_flag</td><td>defines if the warning sentence, about a wall too close to the robot, has been printed or not (input &amp; output).</td></tr>
   </table>
   </dd>
 </dl>
@@ -200,7 +200,7 @@ std::chrono::high_resolution_clock::time_point&#160;</td><td class="memItemRight
  /move_base/goal <br  />
  /scan</p>
 <p>Description: <br  />
- This nodes simulate the 'logic' of the robot. <br  />
+ This node simulates the 'logic' of the robot. <br  />
  Managing publishers, subscribers and server parameters it is able to avoid the crashing of the robot against a wall, if asked by the user, and register how many targets it reached and how many not. <br  />
  A target is considered 'not reached' when the robot does not reach it within 2 minutes, then the goal is cancelled. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -272,10 +272,10 @@ std::chrono::high_resolution_clock::time_point&#160;</td><td class="memItemRight
       </table>
 </div><div class="memdoc">
 
-<p>Check data from robot's laser scanner and, if the driving assistance is enable, help the user to not crush the robot against a wall. </p>
+<p>Check data from robot's laser scanner and, if the driving assistance is enable, help the user not to crush the robot against a wall. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">msg</td><td>defines the laser scan values. </td></tr>
+    <tr><td class="paramname">msg</td><td>defines the laser scanner values. </td></tr>
   </table>
   </dd>
 </dl>
@@ -308,7 +308,7 @@ std::chrono::high_resolution_clock::time_point&#160;</td><td class="memItemRight
       </table>
 </div><div class="memdoc">
 
-<p>Starts the logic of the robot. </p>
+<p>Initializes the node and starts the logic of the robot. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">argc</td><td></td></tr>
