@@ -29,7 +29,7 @@ https://github.com/simone-contorno/rt-assignment-3<br>
 Now, the User Interface, wrote in python, is implemented in a different node and also in Jupyter. <br>
 Additionally, in Jupyter, it is possible to plot:
 <ul>
-    <li>the robot position (with and without tracking all the history position);</li>
+    <li>the robot position (with and without tracking all the history);</li>
     <li>the laser scanner data;</li> 
     <li>the number of reached and non-reached goals.</li>
 </ul>
@@ -93,4 +93,4 @@ Once open, run all the cells except for the penultimate and the last one (they h
 <a name="improve"></a>
 ### Improvements
 
-In Jupyter Notebook, when data are plotted the kernel remains busy and it cannot be possible continue to use the interfice until the plotting windows will be closed. Then, a good improvement whould be allow to the user to continue to use the interface while it is plotting the data.
+In Jupyter Notebook, when data are plotted the kernel remains busy and it cannot be possible continue to use the interface until the plotting windows will be closed. Then, a good improvement whould be allow to the user to continue to use the interface while it is plotting the data.
