@@ -39,7 +39,11 @@ It is also possible visualize the 3D map of Rviz running the last cell.
 <a name="how"></a>
 ### How it works
 
-Read the README.md file at: https://github.com/simone-contorno/rt-assignment-3.
+To read the documentation of the files "rt2_robot_interface.py" and "rt2_robot_logic.cpp" go to this link:<br>
+https://simone-contorno.github.io/rt2-assignment/files.html.
+
+For the README.md file go to this one:<br>
+https://github.com/simone-contorno/rt-assignment-3.
 
 <a name="installation"></a>
 ### Installation and Execution
