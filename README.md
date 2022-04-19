@@ -33,8 +33,11 @@ Additionally, in Jupyter, it is possible to plot:
     <li>the laser scanner data;</li> 
     <li>the number of reached and non-reached goals.</li>
 </ul>
-These can be plot directly by the UI (discouraged, read the Improvements section), or using a dedicated cell (penultimate one).<br>
-It is also possible visualize the 3D map of Rviz running the last cell.
+These can be plot using a dedicated cell (Section 3), or directly by the UI (Section 2) (discouraged, read the Improvements section).<br>
+In order to use the first modality: uncomment the Section 1.1 and comment the 2.1.<br>
+In order to use the second modality: comment the Section 1.1 and uncomment the 2.1.<br>
+The first one is used by default.<br>
+It is also possible visualize the 3D map of Rviz running the Section 4.
 
 <a name="how"></a>
 ### How it works
@@ -91,10 +94,19 @@ If you want to use the Jupyter Notebook interface, you need to start it:
 
 <pre><code>jupyter notebook --allow-root --ip 0.0.0.0</code></pre>
 
-Now you can access to the rt2_robot folder in your ROS workspace and open the file rt2_robot_jupyter_ui.ipynb.
-Once open, run all the cells except for the penultimate and the last one (they have a specific function, read the comments to know more about it); in the cell with the interface function you will find the buttons to control the robot.
+Now you can access to the rt2_robot folder in your ROS workspace and open the file rt2_robot_jupyter_ui.ipynb.<br>
+Once open, run all the cells.<br>
+By default, you will find:
+<ul>
+    <li>The User Interface to control the robot in the Section 2.5.</li>
+    <li>The data plots in the Section 3.2.</li>
+    <li>The 3D map in the Section 4.</li>
+</ul>
+Notice that, using the defaul plot modality, in order to update the number of reached/non-reached targets in the third plot, you need to click on the "Update targets plot" button. <br>
+If you change the plot modality in the Section 1, then you will not find the data plots in the Section 3.2, but you can plot them by the User Interface in the Section 2.5.
 
 <a name="improve"></a>
 ### Improvements
 
-In Jupyter Notebook, when data are plotted the kernel remains busy and it cannot be possible continue to use the interface until the plotting windows will be closed. Then, a good improvement whould be allow to the user to continue to use the interface while it is plotting the data.
+In Jupyter Notebook, when data are plotted directly by the UI in the Section 3.2, the kernel remains busy and it cannot be possible continue to use the interface until the plotting windows will be closed. Then, a good improvement would be allow to the user to continue to use the interface while it is plotting the data. <br>
+Also, using the default plot modality, update the number of reached/non-reached targets dinamically, without click on the update button, would be a good user experience improvement.
