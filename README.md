@@ -99,7 +99,13 @@ Once open, run all the cells.<br>
 By default, you will find:
 <ul>
     <li>The User Interface to control the robot in the Section 3.</li>
-    <li>The data plots in the Section 4.</li>
+    <li>The data plots in the Section 4.
+        <ul>
+            <li>Robot position data: Section 4.3.</li>
+            <li>Laser scanner data: Section 4.4.</li>
+            <li>Number of reached/non-reached targets: Section 4.5.</li>
+        </ul>    
+    </li>
     <li>The 3D map in the Section 5.</li>
 </ul>
 Notice that, using the defaul plot modality, in order to update the number of reached/non-reached targets in the third plot, you need to click on the "Update targets plot" button. <br>
