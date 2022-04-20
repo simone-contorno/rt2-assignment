@@ -33,11 +33,11 @@ Additionally, in Jupyter, it is possible to plot:
     <li>the laser scanner data;</li> 
     <li>the number of reached and non-reached goals.</li>
 </ul>
-These can be plot using a dedicated cell (Section 5), or directly by the UI (Section 3) (discouraged, read the Improvements section).<br>
+These can be plot using a dedicated cell (Section 4), or directly by the UI (Section 3) (discouraged, read the Improvements section).<br>
 In order to use the first modality: uncomment the Section 1.1 and comment the 1.2.<br>
 In order to use the second modality: comment the Section 1.1 and uncomment the 1.2.<br>
 The first one is used by default.<br>
-It is also possible visualize the 3D map of Rviz running the Section 6.
+It is also possible visualize the 3D map of Rviz running the Section 5.
 
 <a name="how"></a>
 ### How it works
@@ -99,11 +99,11 @@ Once open, run all the cells.<br>
 By default, you will find:
 <ul>
     <li>The User Interface to control the robot in the Section 3.</li>
-    <li>The data plots in the Section 5.</li>
-    <li>The 3D map in the Section 6.</li>
+    <li>The data plots in the Section 4.</li>
+    <li>The 3D map in the Section 5.</li>
 </ul>
 Notice that, using the defaul plot modality, in order to update the number of reached/non-reached targets in the third plot, you need to click on the "Update targets plot" button. <br>
-If you change the plot modality in the Section 1, then you will not find the data plots in the Section 5, but you can plot them by the User Interface in the Section 3.
+If you change the plot modality in the Section 1, then you will not find the data plots in the Section 4, but you can plot them by the User Interface in the Section 3.
 
 <a name="improve"></a>
 ### Improvements
