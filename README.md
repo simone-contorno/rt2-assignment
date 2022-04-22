@@ -35,7 +35,7 @@ There are 3 files:
 <ul>
     <li>rt2_robot_logic.cpp: simulates the 'logic' of the robot.</li>
     <li>rt2_robot_interface.py: provides the UI (User Interface) to the user.</li>
-    <li>rt2_robot_jupyter_ui.ipynb: provide the graphic UI (User Interface) to the user.</li>
+    <li>rt2_robot_jupyter_ui.ipynb: provides the graphic UI (User Interface) to the user.</li>
 </ul>
 
 #### rt2_robot_logic.cpp
@@ -168,8 +168,8 @@ These can be plot using a dedicated cell (Section 4), or directly by the UI (Sec
 In order to use the first modality: uncomment the Section 1.1 and comment the 1.2.<br>
 In order to use the second modality: comment the Section 1.1 and uncomment the 1.2.<br>
 The first one is used by default.<br>
-It is also possible visualize the 3D map of Rviz running the Section 5.
-
+It is also possible visualize the 3D map of Rviz running the Section 5.<br>
+<br>
 To read the documentation of the files "rt2_robot_interface.py" and "rt2_robot_logic.cpp" go to this link:<br>
 https://simone-contorno.github.io/rt2-assignment/files.html.
 
