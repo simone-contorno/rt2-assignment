@@ -10,10 +10,10 @@
  * @details 
  * 
  * Server parameters: <br>
- * @param key_flag define the type of keyboard input insert by the user (output).
- * @param drive_flag define if the manual driving assistance is enable or not (output).
- * @param goal_flag define if a goal is set or not (input & output).
- * @param print_flag define if the warning sentence, about a wall to close to the robot, has been printed or not (input & output).
+ * @param key_flag defines the type of keyboard input inserted by the user (output).
+ * @param drive_flag defines if the manual driving assistance is enabled or not (output).
+ * @param goal_flag defines if a goal is set or not (input & output).
+ * @param print_flag defines if the warning sentence, about a wall too close to the robot, has been printed or not (input & output).
  * 
  * Publishers to: <br>
  * /move_base/cancel <br>
@@ -25,7 +25,7 @@
  * /scan
  * 
  * Description: <br>
- * This nodes simulate the 'logic' of the robot. <br>
+ * This node simulates the 'logic' of the robot. <br>
  * Managing publishers, subscribers and server parameters it is able to avoid the crashing of 
  * the robot against a wall, if asked by the user, and register how many targets
  * it reached and how many not. <br>
@@ -48,8 +48,8 @@
 #include "move_base_msgs/MoveBaseActionFeedback.h"
 
 // Publishers
-ros::Publisher pub_canc; ///< publish to /move_base/cancel
-ros::Publisher pub_vel; ///< publish to /cmd_vel
+ros::Publisher pub_canc; ///< Publishes to /move_base/cancel
+ros::Publisher pub_vel; ///< Publishes to /cmd_vel
 
 // Global variables
 float x_goal; ///< Current goal coordinate x
@@ -67,9 +67,9 @@ std::chrono::high_resolution_clock::time_point t_end; ///< Ending time goal reac
 
 /**
  * @brief Check data from robot's laser scanner and, 
- * if the driving assistance is enable, help the user to not crush the robot against a wall. 
+ * if the driving assistance is enable, help the user not to crush the robot against a wall. 
  * 
- * @param msg defines the laser scan values.
+ * @param msg defines the laser scanner values.
  */
 void drivingAssistance(const sensor_msgs::LaserScan::ConstPtr& msg) {
     // Local variables
@@ -222,7 +222,7 @@ void currentGoal(const move_base_msgs::MoveBaseActionGoal::ConstPtr& msg) {
 }
 
 /**
- * @brief Starts the logic of the robot.
+ * @brief Initializes the node and starts the logic of the robot.
  * 
  * @param argc 
  * @param argv 
