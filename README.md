@@ -27,7 +27,138 @@ The main aim of this repository is provide an alternative, more modular, impleme
 https://github.com/simone-contorno/rt-assignment-3<br>
 
 Now, the User Interface, wrote in python, is implemented in a different node and also in Jupyter. <br>
-Additionally, in Jupyter, it is possible to plot:
+
+<a name="how"></a>
+### How it works
+
+There are 3 files:
+<ul>
+    <li>rt2_robot_logic.cpp: simulates the 'logic' of the robot.</li>
+    <li>rt2_robot_interface.py: provides the UI (User Interface) to the user.</li>
+    <li>rt2_robot_jupyter_ui.ipynb: provide the graphic UI (User Interface) to the user.</li>
+</ul>
+
+#### rt2_robot_logic.cpp
+Managing publishers, subscribers and server parameters it is able to avoid the crashing of the robot against a wall, if asked by the user, and register how many targets it reached and how many not. A target is considered 'not reached' when the robot does not reach it within 2 minutes, then the goal is cancelled.<br>
+There are 3 subscribers that run simultaneously thanks to a multi-thread architecture given by the ROS class AsyncSpinner:
+<ul>
+    <li>sub_pos: subscribes to the topic /move_base/feedback through the function currentStatus that continuosly update the current goal ID and check
+        whether the robot has reached the goal position.</li>
+    <li>sub_goal: subscribes to the topic /move_base/goal through the function currentGoal that continuosly update the current goal coordinates.</li>
+    <li>sub_laser: subscribes to the topic /scan through the function drivingAssistance that continuosly take data by the laser scanner and, if the
+        driving assistance is enabled, help the user to drive the robot stopping its if there is a wall too close in the current direction.</li>
+</ul>
+
+You can change 3 constant values to modify some aspect of the program:
+    <ul>
+        <li>DIST: minimum distance from the wall with the driving assistance enabled.</li>
+        <li>POS_ERROR: position range error.</li>
+        <li>MAX_TIME: maximum time to reach a goal (microseconds).</li>
+    </ul>
+In the code these appear like:
+``` cpp
+#define DIST 0.35 
+#define POS_ERROR 0.5 
+#define MAX_TIME 120000000 
+```
+
+##### Pseudo-code
+<pre><code>
+FUNCTION drivingAssistance WITH (msg)
+    COMPUTE minimum distance on the right
+    COMPUTE minimum distance in the middle
+    COMPUTE minimum distance on the left
+    
+    IF driving assistance is enabled AND
+        the robot is going against a wall THEN
+        SET robot velocity TO 0
+        PUBLISH robot velocity
+    ENDIF
+
+    IF a goal position is set THEN
+        COMPUTE the time elapsed
+        IF the time elapsed IS GREATER THAN 120 seconds THEN
+            DELETE current goal
+            INCRESE number of non-reached goals
+        ENDIF
+    ENDIF
+ENDFUNCTION
+
+FUNCTION currentStatus WITH (msg) 
+    SET current robot position
+    COMPUTE the difference between the current robot position and the current goal position
+    
+    IF the difference IS LESS THAN 0.5 THEN
+        STOP to compute the elapsed time
+        INCREASE number of reached goals
+    ENDIF
+    
+    UPDATE the goal ID if there is a new one
+ENDFUNCTION
+
+FUNCTION currentGoal WITH (msg)
+    SET current goal position
+ENDFUNCTION
+
+FUNCTION main WITH (argc, argv)
+    INITIALIZE the node "rt2_robot_logic"
+    
+    SET the first publisher TO "move_base/cancel"
+    SET the second publisher TO "cmd_vel"
+
+    SET the first subscriber TO "/move_base/feedback" WITH currentStatus
+    SET the second subscriber TO "/move_base/goal" WITH currentGoal
+    SET the third subscriber TO "/scan" WITH drivingAssistance
+
+    INITIALIZE spinner WITH 3 threads
+    START spinner
+    INPUT "If you want to quit, enter any key:"
+    PRINT "Bye."
+    STOP spinner
+    CALL ros::shutdown
+    CALL ros::waitForShutdown
+
+    RETURN 0
+ENDFUNCTION
+</code></pre>
+
+#### rt2_robot_interface.py
+The user will be able to choose between two different modalities:
+<ul>
+    <li>Automatic goal reaching.</li>
+    <li>Manual driving with or without the driving assistance.</li>
+</ul>
+There is also the possibility to cancel the current goal, if any.
+
+##### Pseudo-code
+<pre><code>
+FUNCTION manualDriving
+    WHILE user does not quit
+        TAKE user input through the keyboard
+        EXEC corresponding task
+        PUBLISH new robot velocity
+    ENDWHILE
+ENDFUNCTION
+
+FUNCTION userInterface 
+    WHILE user does not quit
+        TAKE user input through the keyboard
+        EXEC corresponding task
+    ENDWHILE
+ENDFUNCTION
+
+FUNCTION main WITH (argc, argv)
+    INITIALIZE the node "rt2_robot_ui"
+    PRINT starting message
+    CALL interface
+    PRINT "Bye."
+    
+    RETURN 0
+ENDFUNCTION
+</code></pre>
+
+#### rt2_robot_jupyter_ui.ipynb
+Additionally with respect to the 'rt2_robot_interface.py" file, in Jupyter, it is possible to plot:
 <ul>
     <li>the robot position (with and without tracking all the history);</li>
     <li>the laser scanner data;</li> 
@@ -39,14 +170,8 @@ In order to use the second modality: comment the Section 1.1 and uncomment the 1
 The first one is used by default.<br>
 It is also possible visualize the 3D map of Rviz running the Section 5.
 
-<a name="how"></a>
-### How it works
-
 To read the documentation of the files "rt2_robot_interface.py" and "rt2_robot_logic.cpp" go to this link:<br>
 https://simone-contorno.github.io/rt2-assignment/files.html.
-
-For the README.md file go to this one:<br>
-https://github.com/simone-contorno/rt-assignment-3.
 
 <a name="installation"></a>
 ### Installation and Execution
