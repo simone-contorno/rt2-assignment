@@ -10,10 +10,10 @@
 # \details 
 # 
 # Server parameters: <br>
-# param key_flag define the type of keyboard input insert by the user (input). <br>
-# param drive_flag define if the manual driving assistance is enable or not (input). <br>
-# param goal_flag define if a goal is set or not (input). <br>
-# param print_flag define if the warning sentence, about a wall to close to the robot, has been printed or not (input). <br>
+# param key_flag defines the type of keyboard input insert by the user (input). <br>
+# param drive_flag defines if the manual driving assistance is enable or not (input). <br>
+# param goal_flag defines if a goal is set or not (input). <br>
+# param print_flag defines if the warning sentence, about a wall too close to the robot, has been printed or not (input). <br>
 # 
 # Publishers to: <br>
 # /move_base/cancel <br>
@@ -25,11 +25,10 @@
 # /scan
 # 
 # Description: <br>
-# This nodes simulate the 'logic' of the robot. <br>
-# Managing publishers, subscribers and server parameters it is able to avoid the crashing of 
-# the robot against a wall, if asked by the user, and register how many targets
-# it reached and how many not. <br>
-# A target is considered 'not reached' when the robot does not reach it within 2 minutes, then the goal is cancelled.
+# This node provides the UI (User Interface) to the user. <br>
+# He will be able to choose between two different modalities: <br>
+#   1) Automatic goal reaching. <br>
+#   2) Manual driving with or without the driving assistance. 
 # 
 
 # ROS headers
@@ -156,7 +155,7 @@ def manualDriving():
 # Show the UI
 def interface():
     '''
-    Provides an interface to choose among different options, which are: 
+    Provides an interface to choose among different options: 
     0 - Exit and close the program.
     1 - Insert new coordinates to reach.
     2 - Cancel the current goal.
@@ -258,7 +257,7 @@ def interface():
             
 def main():
     '''
-    Starts the User Interface (UI) to control the robot.
+    Initializes the node and starts the User Interface (UI) to control the robot.
     '''
     
     print("\nWelcome to the User Interface!\n"
