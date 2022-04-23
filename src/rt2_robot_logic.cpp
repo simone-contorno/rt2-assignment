@@ -67,7 +67,7 @@ std::chrono::high_resolution_clock::time_point t_end; ///< Ending time goal reac
 
 /**
  * @brief Check data from robot's laser scanner and, 
- * if the driving assistance is enable, help the user not to crush the robot against a wall. 
+ * if the driving assistance is enabled, help the user not to crush the robot against a wall. 
  * 
  * @param msg defines the laser scanner values.
  */
@@ -151,7 +151,7 @@ void drivingAssistance(const sensor_msgs::LaserScan::ConstPtr& msg) {
 
 /**
  * @brief Check if the robot is on the goal position and, when there is a new goal, 
- * update the current Goal ID and save its in a global variable.
+ * update the current Goal ID and save it in a global variable.
  * 
  * @param msg defines the robot position values.
  */
@@ -168,14 +168,8 @@ void currentStatus(const move_base_msgs::MoveBaseActionFeedback::ConstPtr& msg) 
     if (ros::param::has("/goal_flag")) {
         ros::param::get("/goal_flag", goal_flag);
     }
-
-    // Take the module
-    if (current_x < 0)
-        current_x *= -1;
-    if (current_y < 0)
-        current_y *= -1;
     
-    // Compute the error from the actual position and the goal position
+    // Compute the error between the actual position and the goal position
     if (current_x >= x_goal)
         diff_x = current_x - x_goal;
     else 
@@ -206,19 +200,13 @@ void currentStatus(const move_base_msgs::MoveBaseActionFeedback::ConstPtr& msg) 
 }
 
 /**
- * @brief Check the current goal position and saves its module coordinates x and y in two global variables.
+ * @brief Check the current goal position and saves its coordinates x and y in two global variables.
  * 
  * @param msg defines the goal position values.
  */
 void currentGoal(const move_base_msgs::MoveBaseActionGoal::ConstPtr& msg) {
     x_goal = msg->goal.target_pose.pose.position.x;
     y_goal = msg->goal.target_pose.pose.position.y;
-
-    // Take the module
-    if (x_goal < 0)
-        x_goal *= -1;
-    if (y_goal < 0)
-        y_goal *= -1;
 }
 
 /**
