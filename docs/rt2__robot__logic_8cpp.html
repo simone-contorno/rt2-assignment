@@ -125,13 +125,13 @@ Macros</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a4c43c60aa1f08799d4154361b6749d90"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rt2__robot__logic_8cpp.html#a4c43c60aa1f08799d4154361b6749d90">drivingAssistance</a> (const sensor_msgs::LaserScan::ConstPtr &amp;msg)</td></tr>
-<tr class="memdesc:a4c43c60aa1f08799d4154361b6749d90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check data from robot's laser scanner and, if the driving assistance is enable, help the user not to crush the robot against a wall.  <a href="rt2__robot__logic_8cpp.html#a4c43c60aa1f08799d4154361b6749d90">More...</a><br /></td></tr>
+<tr class="memdesc:a4c43c60aa1f08799d4154361b6749d90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check data from robot's laser scanner and, if the driving assistance is enabled, help the user not to crush the robot against a wall.  <a href="rt2__robot__logic_8cpp.html#a4c43c60aa1f08799d4154361b6749d90">More...</a><br /></td></tr>
 <tr class="separator:a4c43c60aa1f08799d4154361b6749d90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe5ed94ffa1a53d79c5a39fa0f0b1b31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rt2__robot__logic_8cpp.html#abe5ed94ffa1a53d79c5a39fa0f0b1b31">currentStatus</a> (const move_base_msgs::MoveBaseActionFeedback::ConstPtr &amp;msg)</td></tr>
-<tr class="memdesc:abe5ed94ffa1a53d79c5a39fa0f0b1b31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the robot is on the goal position and, when there is a new goal, update the current Goal ID and save its in a global variable.  <a href="rt2__robot__logic_8cpp.html#abe5ed94ffa1a53d79c5a39fa0f0b1b31">More...</a><br /></td></tr>
+<tr class="memdesc:abe5ed94ffa1a53d79c5a39fa0f0b1b31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the robot is on the goal position and, when there is a new goal, update the current Goal ID and save it in a global variable.  <a href="rt2__robot__logic_8cpp.html#abe5ed94ffa1a53d79c5a39fa0f0b1b31">More...</a><br /></td></tr>
 <tr class="separator:abe5ed94ffa1a53d79c5a39fa0f0b1b31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4710b8905b07ffceb0b3c89d11db805"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rt2__robot__logic_8cpp.html#ae4710b8905b07ffceb0b3c89d11db805">currentGoal</a> (const move_base_msgs::MoveBaseActionGoal::ConstPtr &amp;msg)</td></tr>
-<tr class="memdesc:ae4710b8905b07ffceb0b3c89d11db805"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check the current goal position and saves its module coordinates x and y in two global variables.  <a href="rt2__robot__logic_8cpp.html#ae4710b8905b07ffceb0b3c89d11db805">More...</a><br /></td></tr>
+<tr class="memdesc:ae4710b8905b07ffceb0b3c89d11db805"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check the current goal position and saves its coordinates x and y in two global variables.  <a href="rt2__robot__logic_8cpp.html#ae4710b8905b07ffceb0b3c89d11db805">More...</a><br /></td></tr>
 <tr class="separator:ae4710b8905b07ffceb0b3c89d11db805"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rt2__robot__logic_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
 <tr class="memdesc:a3c04138a5bfe5d72780bb7e82a18e627"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the node and starts the logic of the robot.  <a href="rt2__robot__logic_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">More...</a><br /></td></tr>
@@ -220,7 +220,7 @@ std::chrono::high_resolution_clock::time_point&#160;</td><td class="memItemRight
       </table>
 </div><div class="memdoc">
 
-<p>Check the current goal position and saves its module coordinates x and y in two global variables. </p>
+<p>Check the current goal position and saves its coordinates x and y in two global variables. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg</td><td>defines the goal position values. </td></tr>
@@ -246,7 +246,7 @@ std::chrono::high_resolution_clock::time_point&#160;</td><td class="memItemRight
       </table>
 </div><div class="memdoc">
 
-<p>Check if the robot is on the goal position and, when there is a new goal, update the current Goal ID and save its in a global variable. </p>
+<p>Check if the robot is on the goal position and, when there is a new goal, update the current Goal ID and save it in a global variable. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg</td><td>defines the robot position values. </td></tr>
@@ -272,7 +272,7 @@ std::chrono::high_resolution_clock::time_point&#160;</td><td class="memItemRight
       </table>
 </div><div class="memdoc">
 
-<p>Check data from robot's laser scanner and, if the driving assistance is enable, help the user not to crush the robot against a wall. </p>
+<p>Check data from robot's laser scanner and, if the driving assistance is enabled, help the user not to crush the robot against a wall. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg</td><td>defines the laser scanner values. </td></tr>
