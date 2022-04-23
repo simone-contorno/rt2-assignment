@@ -160,7 +160,7 @@ ENDFUNCTION
 #### rt2_robot_jupyter_ui.ipynb
 Additionally with respect to the 'rt2_robot_interface.py" file, in Jupyter, it is possible to plot:
 <ul>
-    <li>the robot position (with and without tracking all the history);</li>
+    <li>the robot position (with and without tracking all the history, respectively uncommenting and commenting the Section 4.2);</li>
     <li>the laser scanner data;</li> 
     <li>the number of reached and non-reached goals.</li>
 </ul>
