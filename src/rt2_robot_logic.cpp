@@ -66,7 +66,7 @@ std::chrono::high_resolution_clock::time_point t_end; ///< Ending time goal reac
 #define MAX_TIME 120000000 ///< Maximum time to reach a goal (microseconds)
 
 /**
- * @brief Check data from robot's laser scanner and, 
+ * @brief Checks data from robot's laser scanner and, 
  * if the driving assistance is enabled, help the user not to crush the robot against a wall. 
  * 
  * @param msg defines the laser scanner values.
@@ -150,7 +150,7 @@ void drivingAssistance(const sensor_msgs::LaserScan::ConstPtr& msg) {
 }
 
 /**
- * @brief Check if the robot is on the goal position and, when there is a new goal, 
+ * @brief Checks if the robot is on the goal position and, when there is a new goal, 
  * update the current Goal ID and save it in a global variable.
  * 
  * @param msg defines the robot position values.
@@ -200,7 +200,7 @@ void currentStatus(const move_base_msgs::MoveBaseActionFeedback::ConstPtr& msg) 
 }
 
 /**
- * @brief Check the current goal position and saves its coordinates x and y in two global variables.
+ * @brief Checks the current goal position and saves its coordinates x and y in two global variables.
  * 
  * @param msg defines the goal position values.
  */
