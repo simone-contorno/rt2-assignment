@@ -175,12 +175,11 @@ https://simone-contorno.github.io/rt2-assignment/files.html.
 
 <a name="installation"></a>
 ### Installation and Execution
-
+Go into the src folder of your ROS workspace.<br> 
 Download this repository:
 
 <pre><code>git clone https://github.com/simone-contorno/rt2-assignment</code></pre>
 
-Copy or move the folder rt2_robot into the src folder of your ROS workspace.<br> 
 Go into the root folder of your ROS workspace and build the workspace: 
 
 <pre><code>catkin_make</code></pre>
